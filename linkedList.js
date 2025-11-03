@@ -4,7 +4,6 @@ class LinkedList {
         this.size = 0;
     }
 
-
     append(value) {
         if (this.head.value == null) {
             const node = new Node(value, null)
@@ -35,6 +34,25 @@ class LinkedList {
             this.size++;
         }
     }
+
+    getSize() {
+        return `Size: ${this.size}`;
+    }
+
+    getHead() {
+        if (this.head.value == null) return 'No elements in the list';
+        return `HEAD ->  value: ${this.head.value}  next: ${this.head.next.value}`;
+    }
+
+    getTail() {
+        if (this.head.value == null) return 'No elements in the list';
+        let current = this.head;
+        while(current.next != null) {
+            current = current.next;
+        }
+
+        return `TAIL ->  value: ${current.value}  next: ${current.next}`;
+    }
 }
 
 
@@ -46,24 +64,13 @@ class Node {
 }
 
 
-
 const lista = new LinkedList();
-console.log(lista);
 
 lista.append('kiko');
-console.log(lista);
-
 lista.append('pur');
-console.log(lista);
-
 lista.append('sous');
-console.log(lista);
-
 lista.prepend('jacky');
-console.log(lista);
 
-console.log(lista.head.value)
-console.log(lista.head.next.value);
-console.log(lista.head.next.next.value);
-console.log(lista.head.next.next.next.value);
-console.log(lista.head.next.next.next.next);
+console.log(lista.getSize());
+console.log(lista.getHead());
+console.log(lista.getTail());
