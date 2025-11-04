@@ -119,6 +119,22 @@ class LinkedList {
         string += '( null )';
         return string;
     }
+
+    insertAt(value, index) {
+        if (index > this.size || index <= 1) return `Insert(${index}) -> error`;
+        let prev;
+        let current = this.head
+        for(let i=1; i<index; i++) {
+            prev = current;
+            current = current.next;
+        }
+        
+        const node = new Node(value);
+        prev.next = node;
+        node.next = current;
+
+        return `Insert(${index}) -> ${value}`;
+    }
 }
 
 
@@ -151,6 +167,8 @@ console.log(lista.find('jacky'));
 console.log(lista.find('kiko'));
 console.log(lista.find('pur'));
 console.log(lista.find('sous'));
+console.log(lista.toString());
+console.log(lista.insertAt('dylan', 2));
 console.log(lista.toString());
 
 
