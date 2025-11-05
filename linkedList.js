@@ -145,6 +145,29 @@ class LinkedList {
 
         return `Insert(${index}) -> ${value}`;
     }
+
+    removeAt(index) {
+        if (this.size <= 0 || index <= 0 || index > this.size) {
+            return `Remove(${index}) -> error`;
+        } else if (index == this.size || index == 1 && this.size == 1) {
+            this.pop();
+        } else if(index == 1) {
+            this.head.value = this.head.next.value;
+            this.head.next = this.head.next.next;
+        } else {
+            let prev;
+            let current = this.head
+
+            for(let i=1; i<index; i++) {
+                prev = current;
+                current = current.next;
+            }
+
+            prev.next = current.next;
+        }
+
+        return `Remove(${index})`;
+    }
 }
 
 
@@ -178,7 +201,7 @@ console.log(lista.find('kiko'));
 console.log(lista.find('pur'));
 console.log(lista.find('sous'));
 console.log(lista.toString());
-console.log(lista.insertAt('dylan', 5));
+console.log(lista.insertAt('dylan', 2));
 console.log(lista.toString());
 
 
