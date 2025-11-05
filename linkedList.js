@@ -121,17 +121,27 @@ class LinkedList {
     }
 
     insertAt(value, index) {
-        if (index > this.size || index <= 1) return `Insert(${index}) -> error`;
-        let prev;
-        let current = this.head
-        for(let i=1; i<index; i++) {
-            prev = current;
-            current = current.next;
+
+        if (index <= 0 || index > this.size + 1) {
+            return `Insert(${index}) -> error`;
+        } else if (index == this.size + 1) {
+            this.append(value);
+        } else if (index == 1) {
+            this.prepend(value);
+        } else {
+            let prev;
+            let current = this.head
+
+            for(let i=1; i<index; i++) {
+                prev = current;
+                current = current.next;
+            }
+            
+            const node = new Node(value);
+            prev.next = node;
+            node.next = current;
         }
         
-        const node = new Node(value);
-        prev.next = node;
-        node.next = current;
 
         return `Insert(${index}) -> ${value}`;
     }
@@ -168,7 +178,7 @@ console.log(lista.find('kiko'));
 console.log(lista.find('pur'));
 console.log(lista.find('sous'));
 console.log(lista.toString());
-console.log(lista.insertAt('dylan', 2));
+console.log(lista.insertAt('dylan', 5));
 console.log(lista.toString());
 
 
